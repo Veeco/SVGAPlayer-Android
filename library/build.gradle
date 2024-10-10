@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 
 android {
@@ -34,4 +35,17 @@ android {
 
 dependencies {
     implementation 'com.squareup.wire:wire-runtime:4.4.1'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.veeco.SVGAPlayer-Android'
+                artifactId = 'veeco'
+                version = '1.0.0'
+            }
+        }
+    }
 }
